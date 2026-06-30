@@ -1,7 +1,9 @@
 package streams;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Q07_PartitioningBy {
 
@@ -28,13 +30,16 @@ public class Q07_PartitioningBy {
      */
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
+        System.out.println(numbers.stream().collect(Collectors.partitioningBy(i->i%2==0)));
         List<Student> students = Arrays.asList(
             new Student("Alice",  75),
             new Student("Bob",    45),
             new Student("Carol",  90),
             new Student("Dave",   38),
             new Student("Eve",    62)
+        );
+        System.out.println(students.stream().collect(Collectors.partitioningBy(s-> s.marks >=50)));
+        System.out.println(students.stream().collect(Collectors.partitioningBy(e-> e.marks >=50,Collectors.counting()))
         );
 
         List<Employee> employees = Arrays.asList(
